@@ -5,7 +5,6 @@ import {
     Theme
 } from "@aws-amplify/ui-react"
 import "@aws-amplify/ui-react/styles.css"
-import { confirmResetPassword, confirmSignUp } from "aws-amplify/auth";
 
 const Authenticator: React.FC<PropsWithChildren> = ({ children }) => {
     const theme: Theme = {
