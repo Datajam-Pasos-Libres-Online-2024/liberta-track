@@ -1,9 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Authenticator from "./components/core/Authenticator"
+import MainLayout from "./components/layout/MainLayout"
+import HomePage from "./pages/home/HomePage"
+import { routes } from "./routes"
 
 const App = () => {
   return (
     <Authenticator>
-      LibertaTrack
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            {routes}
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Authenticator>
   )
 }
