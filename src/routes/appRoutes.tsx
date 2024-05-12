@@ -1,15 +1,14 @@
 import { RouteType } from "./config";
-import HomePage from "../pages/home/HomePage";
+import HomePage from "../pages/virtual-assistant/VirtualAssistantPage";
 import ModernSlaveryPageLayout from "../pages/modern-slavery/ModernSlaveryPageLayout";
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import ModernSlaveryPage from "../pages/modern-slavery/BenchmarkingToolPage";
 import ModernSlaveryIndex from "../pages/modern-slavery/ModernSlaveryIndex";
 import ProfilePage from "../pages/profile/ProfilePage";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import AnalyticsPage from "../pages/modern-slavery/PerformanceResultsPage";
-import SaasPage from "../pages/modern-slavery/SaasPage";
 import BenchmarkingToolPage from "../pages/modern-slavery/BenchmarkingToolPage";
 import PerformanceResultsPage from "../pages/modern-slavery/PerformanceResultsPage";
+import VirtualAssistantPage from "../pages/virtual-assistant/VirtualAssistantPage";
+import SmartToySharpIcon from '@mui/icons-material/SmartToySharp';
 
 const appRoutes: RouteType[] = [
     {
@@ -57,7 +56,16 @@ const appRoutes: RouteType[] = [
                 }
             }
         ]
-    }
+    },
+    {
+        path: "/virtual-assistant",
+        element: <VirtualAssistantPage />,
+        state: "virtual-assistant",
+        sidebarProps: {
+            displayText: "Asistente Virtual",
+            icon: <SmartToySharpIcon />
+        }
+    },
 ]
 
 export default appRoutes

@@ -1,29 +1,45 @@
-import { Avatar, Drawer, List, ListItemButton, ListItemIcon, Stack, Toolbar } from "@mui/material";
+import { Avatar, Drawer, List, ListItemButton, ListItemIcon, Stack, Toolbar, useTheme } from "@mui/material";
 import sizeConfigs from "../../configs/sizeConfigs";
-import assets from "../../assets";
-import colorConfigs from "../../configs/colorConfigs";
 import { deepOrange } from "@mui/material/colors";
 import appRoutes from "../../routes/appRoutes";
 import SidebarItem from "./SidebarItem";
 import SidebarItemCollapse from "./SidebarItemCollapse";
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import IconButton from '@mui/material/IconButton';
+import SidebarHeader from "./SidebarHeader";
+import colorConfigs from "../../configs/colorConfigs";
 
-const Sidebar = () => {
+type Props = {
+    open: boolean;
+    handleDrawerClose: () => void;
+}
+
+const Sidebar = ({ open, handleDrawerClose }: Props) => {
+    const theme = useTheme();
+    
     return (
         <Drawer
-            variant="persistent"
-            open={true}
             sx={{
                 width: sizeConfigs.sidebar.width,
                 flexShrink: 0,
-                "& .MuiDrawer-paper": {
+                '& .MuiDrawer-paper': {
                     width: sizeConfigs.sidebar.width,
-                    boxSizing: "border-box",
+                    boxSizing: 'border-box',
                     borderRight: "0px",
                     backgroundColor: colorConfigs.sidebar.bg,
                     color: colorConfigs.sidebar.color
-                }
+                },
             }}
+            variant="persistent"
+            anchor="left"
+            open={open}
         >
+            <SidebarHeader>
+                <IconButton onClick={handleDrawerClose} style={{color: "#FFFFFF"}}>
+                    {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                </IconButton>
+            </SidebarHeader>
             <List disablePadding>
                 <Toolbar sx={{ marginBottom: "20px" }}>
                     <Stack
@@ -44,7 +60,6 @@ const Sidebar = () => {
                     ) : null
                 ))}
             </List>
-
         </Drawer>
     );
 };
