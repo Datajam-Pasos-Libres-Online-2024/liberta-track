@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Dropzone from '../../components/functional/Dropzone';
 import PDFViewer from '../../components/presentational/PDFViewer';
+import DefaultStorageManager from '../../components/functional/DefaultStorageManager';
 
 type Props = {}
 
@@ -13,6 +14,7 @@ const PerformanceResultsPage = (props: Props) => {
                 <h1 className="text-center">Drag and Drop Test</h1>
                 <Dropzone setPdfFile={setPdfFile} />
             </div>
+            <DefaultStorageManager/>
             <div>
                 {pdfFile && (
                     <PDFViewer pdfFile={pdfFile} />
