@@ -10,8 +10,15 @@ import { store } from './redux/store'
 Amplify.configure({
   Auth: {
     Cognito: {
+      identityPoolId: process.env.IDENTITY_POOL_ID!,
       userPoolClientId: process.env.USER_POOL_CLIENT_ID!,
       userPoolId: process.env.USER_POOL_ID!,
+    }
+  },
+  Storage: {
+    S3: {
+      bucket: process.env.BUCKET_NAME!,
+      region: process.env.REGION!,
     }
   }
 });

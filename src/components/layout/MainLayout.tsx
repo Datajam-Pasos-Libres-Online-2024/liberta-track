@@ -1,37 +1,37 @@
-import { Box, Toolbar } from "@mui/material";
-import sizeConfigs from "../../configs/sizeConfigs";
-import Sidebar from "../common/Sidebar";
-import colorConfigs from "../../configs/colorConfigs";
+import { Box, Toolbar, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
+import AppBar from "../common/AppBar";
 import Topbar from "../common/Topbar";
+import Sidebar from "../common/Sidebar";
 import { Outlet } from "react-router-dom";
+import SidebarHeader from "../common/SidebarHeader";
+import MainWrapper from "../common/MainWrapper";
+import sizeConfigs from "../../configs/sizeConfigs";
+import colorConfigs from "../../configs/colorConfigs";
 
 const MainLayout = () => {
+
+    const theme = useTheme();
+    const [open, setOpen] = useState(false);
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Box sx={{ display: "flex" }}>
-            <Topbar />
-            <Box
-                component="nav"
-                sx={{
-                    width: sizeConfigs.sidebar.width,
-                    flexShrink: 0
-                }}
-            >
-                <Sidebar />
-            </Box>
-            <Box
-                component="main"
-                sx={{
-                    flexGrow: 1,
-                    p: 3,
-                    width: `100% - ${sizeConfigs.sidebar.width})`,
-                    minHeight: "100vh",
-                    backgroundColor: colorConfigs.mainBg
-                }}
-            >
-                <Toolbar />
+            <AppBar position="fixed" open={open}>
+                <Topbar open={open} handleDrawerOpen={handleDrawerOpen} />
+            </AppBar>
+            <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
+            <MainWrapper open={open}>
                 <Outlet />
-            </Box>
-        </Box>
+            </MainWrapper>
+        </Box >
     );
 };
 
