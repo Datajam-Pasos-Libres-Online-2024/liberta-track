@@ -9,6 +9,7 @@ import BenchmarkingToolPage from "../pages/modern-slavery/BenchmarkingToolPage";
 import PerformanceResultsPage from "../pages/modern-slavery/PerformanceResultsPage";
 import VirtualAssistantPage from "../pages/virtual-assistant/VirtualAssistantPage";
 import SmartToySharpIcon from '@mui/icons-material/SmartToySharp';
+import UploadDocumentsPage from "../pages/modern-slavery/UploadDocumentsPage";
 
 const appRoutes: RouteType[] = [
     {
@@ -54,6 +55,14 @@ const appRoutes: RouteType[] = [
                 sidebarProps: {
                     displayText: "Resultados de Desempeño"
                 }
+            },
+            {
+                path: "/modern-slavery/upload-documents",
+                element: <UploadDocumentsPage />,
+                state: "modern-slavery.upload-documents",
+                sidebarProps: {
+                    displayText: "Subir Documentos"
+                }
             }
         ]
     },
@@ -65,7 +74,7 @@ const appRoutes: RouteType[] = [
             displayText: "Asistente Virtual",
             icon: <SmartToySharpIcon />
         }
-    },
+    }
 ]
 
 export default appRoutes

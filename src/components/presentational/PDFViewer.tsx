@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { IconButton } from '@mui/material';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.js',
@@ -13,10 +14,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 type Props = {
-    pdfFile: string;
+    pdfUrl: string;
 }
 
-const PDFViewer = ({ pdfFile }: Props) => {
+const PDFViewer = ({ pdfUrl }: Props) => {
     const [pageNumber, setPageNumber] = useState<number>(1);
     const [numPages, setNumPages] = useState<number>(0);
 
@@ -67,8 +68,8 @@ const PDFViewer = ({ pdfFile }: Props) => {
             </div>
             {/* Contenedor para el PDF con márgenes para los botones */}
             <div style={{ width: Math.min(600, window.innerWidth * 0.8), height: Math.min(750, (window.innerWidth * 0.8) * 1.414), overflow: 'hidden', position: 'relative', maxWidth: '80vw', maxHeight: '80vh', margin: '0 30px' }}>
-                {pdfFile && (
-                    <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+                {pdfUrl && (
+                    <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess}>
                         <Page pageNumber={pageNumber} width={Math.min(600, window.innerWidth * 0.8)} height={Math.min(750, (window.innerWidth * 0.8) * 1.414)} renderTextLayer={false} />
                     </Document>
                 )}
